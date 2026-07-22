@@ -46,7 +46,7 @@ npx playwright show-report ./results/playwright-report
 npm install
 npx playwright install --with-deps chromium
 New-Item -ItemType Directory -Force -Path ./results | Out-Null
-npx replay "./recordings/*.yml" -StartAddress "https://<your-bc-url>" -Authentication UserPassword -UserNameKey BC_USERNAME -PasswordKey BC_PASSWORD -Headed -ResultDir ./results
+& "./node_modules/@microsoft/bc-replay/Replay.ps1" "./recordings/*.yml" -StartAddress "https://<your-bc-url>" -Authentication UserPassword -UserNameKey BC_USERNAME -PasswordKey BC_PASSWORD -Headed -ResultDir ./results
 ```
 
 `-Headed` opens a visible browser window for local debugging; omit it for a headless run. `BC_USERNAME` /

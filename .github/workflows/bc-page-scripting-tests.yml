@@ -77,7 +77,11 @@ jobs:
         shell: pwsh
         run: |
           New-Item -ItemType Directory -Force -Path ./results | Out-Null
-          npx replay "./recordings/*.yml" `
+          # Invoke Replay.ps1 directly rather than via `npx replay` -- on Linux runners,
+          # npx's POSIX bin shim mis-resolves $PSScriptRoot inside the script, which
+          # breaks its internal Playwright config path. Calling the script file
+          # directly avoids that indirection.
+          & "./node_modules/@microsoft/bc-replay/Replay.ps1" "./recordings/*.yml" `
             -StartAddress $env:START_ADDRESS `
             -Authentication $env:BC_AUTHENTICATION `
             -UserNameKey BC_USERNAME `
