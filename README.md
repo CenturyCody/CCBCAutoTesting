@@ -8,7 +8,7 @@ video, and traces as a downloadable artifact.
 ## ⚠️ Before you run this: two things that make or break it
 
 1. **Reachability** — the GitHub-hosted runner must be able to reach your BC URL over the network. BC SaaS/online is
-   reachable from `ubuntu-latest` runners out of the box. On-prem/private BC (VPN-only, firewalled) needs a
+   reachable from `windows-latest` runners out of the box. On-prem/private BC (VPN-only, firewalled) needs a
    **self-hosted runner** — change `runs-on:` in the workflow accordingly.
 2. **No MFA** — the page scripting player signs in with a plain username + password, it does not handle interactive
    MFA prompts. For SaaS (`AAD` auth) you need a **dedicated automation user account** that is:
@@ -44,7 +44,7 @@ npx playwright show-report ./results/playwright-report
 
 ```powershell
 npm install
-npx playwright install --with-deps chromium
+npx playwright install chromium
 New-Item -ItemType Directory -Force -Path ./results | Out-Null
 & "./node_modules/@microsoft/bc-replay/Replay.ps1" "./recordings/*.yml" -StartAddress "https://<your-bc-url>" -Authentication UserPassword -UserNameKey BC_USERNAME -PasswordKey BC_PASSWORD -Headed -ResultDir ./results
 ```

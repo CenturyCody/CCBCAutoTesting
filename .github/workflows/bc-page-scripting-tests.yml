@@ -30,7 +30,11 @@ permissions:
 
 jobs:
   page-scripting:
-    runs-on: ubuntu-latest   # for on-prem BC, use a self-hosted label instead
+    # windows-latest: bc-replay's Replay.ps1 hardcodes Windows-style path separators
+    # (e.g. $PSScriptRoot + "\player") and is explicitly marked experimental/not-fully-
+    # supported -- it breaks in Linux-specific ways (path joining, npx bin-shim
+    # resolution) that don't occur on Windows. For on-prem BC, use a self-hosted label.
+    runs-on: windows-latest
     timeout-minutes: 30
 
     env:
@@ -70,8 +74,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Install Playwright browser (Chromium) + OS deps
-        run: npx playwright install --with-deps chromium
+      - name: Install Playwright browser (Chromium)
+        run: npx playwright install chromium
 
       - name: Run page scripts (bc-replay)
         shell: pwsh
