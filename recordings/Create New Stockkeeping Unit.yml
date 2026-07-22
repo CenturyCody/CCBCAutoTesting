@@ -6,9 +6,8 @@ start:
 steps:
   - type: navigate
     target:
-      - page: Business Manager Role Center
-      - action: Create Stockkeeping Unit90227
-    description: Navigate to <caption>Create Stockkeeping Unit</caption>
+      - page: Create Stockkeeping Unit
+    description: Navigate to Create Stockkeeping Unit
   - type: page-shown
     source:
       page: Create Stockkeeping Unit

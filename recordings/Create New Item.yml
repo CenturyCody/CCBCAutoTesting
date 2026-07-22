@@ -6,9 +6,8 @@ start:
 steps:
   - type: navigate
     target:
-      - page: Business Manager Role Center
-      - action: Items
-    description: Navigate to <caption>Items</caption>
+      - page: Item List
+    description: Navigate to Item List
   - type: page-shown
     source:
       page: Item List

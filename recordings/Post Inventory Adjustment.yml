@@ -6,9 +6,8 @@ start:
 steps:
   - type: navigate
     target:
-      - page: Business Manager Role Center
-      - action: Phys. Inventory Journal39670
-    description: Navigate to <caption>Physical Inventory Journals</caption>
+      - page: Phys. Inventory Journal
+    description: Navigate to Phys. Inventory Journal
   - type: page-shown
     source:
       page: Phys. Inventory Journal

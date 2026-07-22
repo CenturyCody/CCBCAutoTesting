@@ -6,9 +6,8 @@ start:
 steps:
   - type: navigate
     target:
-      - page: Business Manager Role Center
-      - action: Transfer Orders75441
-    description: Navigate to <caption>Transfer Orders</caption>
+      - page: Transfer Orders
+    description: Navigate to Transfer Orders
   - type: page-closed
     source:
       page: Transfer Orders

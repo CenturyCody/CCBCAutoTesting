@@ -6,9 +6,8 @@ start:
 steps:
   - type: navigate
     target:
-      - page: Business Manager Role Center
-      - action: Purchase Order List90575
-    description: Navigate to <caption>Purchase Orders</caption>
+      - page: Purchase Order List
+    description: Navigate to Purchase Order List
   - type: page-shown
     source:
       page: Purchase Order List

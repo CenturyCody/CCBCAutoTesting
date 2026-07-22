@@ -6,9 +6,8 @@ start:
 steps:
   - type: navigate
     target:
-      - page: Business Manager Role Center
-      - action: Firm Planned Prod. Orders42369
-    description: Navigate to <caption>Firm Planned Prod. Orders</caption>
+      - page: Firm Planned Prod. Orders
+    description: Navigate to Firm Planned Prod. Orders
   - type: page-shown
     source:
       page: Firm Planned Prod. Orders

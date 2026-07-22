@@ -6,9 +6,8 @@ start:
 steps:
   - type: navigate
     target:
-      - page: Business Manager Role Center
-      - action: Released Production Orders28012
-    description: Navigate to <caption>Released Production Orders</caption>
+      - page: Released Production Orders
+    description: Navigate to Released Production Orders
   - type: page-shown
     source:
       page: Released Production Orders
