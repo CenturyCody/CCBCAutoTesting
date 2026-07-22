@@ -76,7 +76,7 @@ jobs:
       - name: Run page scripts (bc-replay)
         shell: pwsh
         run: |
-          npx replay ./recordings/*.yml `
+          npx replay "./recordings/*.yml" `
             -StartAddress $env:START_ADDRESS `
             -Authentication $env:BC_AUTHENTICATION `
             -UserNameKey BC_USERNAME `

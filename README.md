@@ -42,10 +42,10 @@ npx playwright show-report ./results/playwright-report
 
 ## Running locally
 
-```bash
+```powershell
 npm install
 npx playwright install --with-deps chromium
-npx replay ./recordings/*.yml -StartAddress "https://<your-bc-url>" -Authentication UserPassword -UserNameKey BC_USERNAME -PasswordKey BC_PASSWORD -Headed -ResultDir ./results
+npx replay "./recordings/*.yml" -StartAddress "https://<your-bc-url>" -Authentication UserPassword -UserNameKey BC_USERNAME -PasswordKey BC_PASSWORD -Headed -ResultDir ./results
 ```
 
 `-Headed` opens a visible browser window for local debugging; omit it for a headless run. `BC_USERNAME` /
