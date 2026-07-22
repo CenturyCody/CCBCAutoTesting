@@ -1,0 +1,86 @@
+name: Change Firm Planned Order Released
+description: Test recording
+telemetryId: ea615e14-57fc-407a-bc8e-151631e555ac
+start:
+  profile: BUSINESS MANAGER
+steps:
+  - type: navigate
+    target:
+      - page: Business Manager Role Center
+      - action: Firm Planned Prod. Orders42369
+    description: Navigate to <caption>Firm Planned Prod. Orders</caption>
+  - type: page-shown
+    source:
+      page: Firm Planned Prod. Orders
+    modal: false
+    runtimeId: bfnw
+    description: Page <caption>Firm Planned Prod. Orders</caption> was shown.
+  - type: set-current-row
+    target:
+      - page: Firm Planned Prod. Orders
+        runtimeRef: bfnw
+      - repeater: Control1
+    targetRecord:
+      relative: 15
+    description: Set current row in <caption>Control1</caption>
+  - type: invoke
+    target:
+      - page: Firm Planned Prod. Orders
+        runtimeRef: bfnw
+      - repeater: Control1
+    invokeType: Edit
+    parameters:
+      AlwaysCommit: false
+    description: Invoke row on <caption>Control1</caption>
+  - type: page-shown
+    source:
+      page: Firm Planned Prod. Order
+    modal: false
+    runtimeId: bfzj
+    description: Page <caption>Firm Planned Prod. Order</caption> was shown.
+  - type: invoke
+    target:
+      - page: Firm Planned Prod. Order
+        runtimeRef: bfzj
+      - action: Change &Status
+    parameters: {}
+    description: Invoke <caption>Change Status...</caption>
+  - type: page-shown
+    source:
+      page: Change Status on Prod. Order
+    modal: true
+    runtimeId: bg6c
+    description: Page <caption>Change Status on Prod. Order</caption> was shown.
+  - type: invoke
+    target:
+      - page: Change Status on Prod. Order
+        runtimeRef: bg6c
+    invokeType: Yes
+    description: Invoke Yes on <caption>Change Status on Prod. Order</caption>
+  - type: page-closed
+    source:
+      page: Change Status on Prod. Order
+    runtimeId: bg6c
+    description: Page <caption>Change Status on Prod. Order</caption> was closed.
+  - type: page-closed
+    source:
+      page: Firm Planned Prod. Order
+    runtimeId: bfzj
+    description: Page <caption>Firm Planned Prod. Order</caption> was closed.
+  - type: message
+    automationId: 8da61efd-0002-0003-0507-0b0d1113171d
+    text: Production Order FPPO0107  with status Firm Planned has been changed to
+      Production Order RPO2516 with status Released.
+    description: "Message: <value>Production Order FPPO0107  with status Firm
+      Planned has been changed to Production Order RPO2516 with status
+      Released.</value>"
+  - type: close-page
+    target:
+      - page: Firm Planned Prod. Orders
+        runtimeRef: bfnw
+    description: Close page <caption>Firm Planned Prod. Orders</caption>
+  - type: page-closed
+    source:
+      page: Firm Planned Prod. Orders
+    runtimeId: bfnw
+    description: Page <caption>Firm Planned Prod. Orders</caption> was closed.

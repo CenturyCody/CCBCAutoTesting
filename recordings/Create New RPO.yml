@@ -1,0 +1,178 @@
+name: Create New RPO
+description: Test recording
+telemetryId: 25250b8e-80eb-4049-b5df-1341528eb4e4
+start:
+  profile: BUSINESS MANAGER
+steps:
+  - type: navigate
+    target:
+      - page: Business Manager Role Center
+      - action: Released Production Orders28012
+    description: Navigate to <caption>Released Production Orders</caption>
+  - type: page-shown
+    source:
+      page: Released Production Orders
+    modal: false
+    runtimeId: behu
+    description: Page <caption>Released Production Orders</caption> was shown.
+  - type: invoke
+    target:
+      - page: Released Production Orders
+        runtimeRef: behu
+      - action: Control_New
+    invokeType: New
+    description: Invoke New on <caption>New</caption>
+  - type: page-shown
+    source:
+      page: Released Production Order
+    modal: false
+    runtimeId: bemk
+    description: Page <caption>New - Released Production Order</caption> was shown.
+  - type: focus
+    target:
+      - page: Released Production Order
+        runtimeRef: bemk
+      - field: No.
+    description: Focus <caption>No.</caption>
+  - type: focus
+    target:
+      - page: Released Production Order
+        runtimeRef: bemk
+      - field: Source No.
+    description: Focus <caption>Source No.</caption>
+  - type: input
+    target:
+      - page: Released Production Order
+        runtimeRef: bemk
+      - field: Source No.
+    value: ""
+    isFilterAsYouType: true
+    description: Input <value></value> into <caption>Source No.</caption>
+  - type: page-shown
+    source:
+      page: lookup:Source No.
+    modal: false
+    runtimeId: beuz
+    description: Page <caption>Select</caption> was shown.
+  - type: input
+    target:
+      - page: Released Production Order
+        runtimeRef: bemk
+      - field: Source No.
+    value: test
+    isFilterAsYouType: true
+    description: Input <value>test</value> into <caption>Source No.</caption>
+  - type: input
+    target:
+      - page: Released Production Order
+        runtimeRef: bemk
+      - field: Source No.
+    value: test1
+    isFilterAsYouType: true
+    description: Input <value>test1</value> into <caption>Source No.</caption>
+  - type: invoke
+    target:
+      - page: lookup:Source No.
+        runtimeRef: beuz
+      - repeater: repeater
+    parameters:
+      AlwaysCommit: true
+    description: Invoke row on <caption>repeater</caption>
+  - type: page-closed
+    source:
+      page: lookup:Source No.
+    runtimeId: beuz
+    description: Page <caption>Select</caption> was closed.
+  - type: input
+    target:
+      - page: Released Production Order
+        runtimeRef: bemk
+      - field: Source No.
+    value: test1
+    description: Input <value>test1</value> into <caption>Source No.</caption>
+  - type: input
+    target:
+      - page: Released Production Order
+        runtimeRef: bemk
+      - field: Quantity
+    value: "12"
+    description: Input <value>12</value> into <caption>Quantity</caption>
+  - type: focus
+    target:
+      - page: Released Production Order
+        runtimeRef: bemk
+      - field: Production Date
+    description: Focus <caption>Production Date</caption>
+  - type: input
+    target:
+      - page: Released Production Order
+        runtimeRef: bemk
+      - field: Production Date
+    value: "1330"
+    description: Input <value>1330</value> into <caption>Production Date</caption>
+  - type: focus
+    target:
+      - page: Released Production Order
+        runtimeRef: bemk
+      - field: Due Date
+    description: Focus <caption>Due Date</caption>
+  - type: input
+    target:
+      - page: Released Production Order
+        runtimeRef: bemk
+      - field: Production Date
+    value: "1230"
+    description: Input <value>1230</value> into <caption>Production Date</caption>
+  - type: focus
+    target:
+      - page: Released Production Order
+        runtimeRef: bemk
+      - field: Due Date
+    description: Focus <caption>Due Date</caption>
+  - type: input
+    target:
+      - page: Released Production Order
+        runtimeRef: bemk
+      - field: Due Date
+    value: "1231"
+    description: Input <value>1231</value> into <caption>Due Date</caption>
+  - type: focus
+    target:
+      - page: Released Production Order
+        runtimeRef: bemk
+      - field: Description
+    description: Focus <caption>Description</caption>
+  - type: invoke
+    target:
+      - page: Released Production Order
+        runtimeRef: bemk
+      - action: RefreshProductionOrder
+    parameters: {}
+    description: Invoke <caption>Refresh Production Order...</caption>
+  - type: page-shown
+    source:
+      page: Refresh Production Order
+    modal: true
+    runtimeId: bevt
+    description: Page <caption>Refresh Production Order</caption> was shown.
+  - type: invoke
+    target:
+      - page: Refresh Production Order
+        runtimeRef: bevt
+    invokeType: Ok
+    description: Invoke Ok on <caption>Refresh Production Order</caption>
+  - type: page-closed
+    source:
+      page: Refresh Production Order
+    runtimeId: bevt
+    description: Page <caption>Refresh Production Order</caption> was closed.
+  - type: close-page
+    target:
+      - page: Released Production Order
+        runtimeRef: bemk
+    description: Close page <caption>Released Production Order</caption>
+  - type: page-closed
+    source:
+      page: Released Production Order
+    runtimeId: bemk
+    description: Page <caption>Released Production Order</caption> was closed.

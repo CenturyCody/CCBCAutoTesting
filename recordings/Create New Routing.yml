@@ -1,0 +1,89 @@
+name: Create New Routing
+description: Test recording
+telemetryId: 59902aaa-25c7-43ca-a251-e2f476b177bf
+start:
+  profile: BUSINESS MANAGER
+steps:
+  - type: invoke
+    target:
+      - page: Routing List
+        runtimeRef: b3b6
+      - action: Control_New
+    invokeType: New
+    description: Invoke New on <caption>New</caption>
+  - type: page-shown
+    source:
+      page: Routing
+    modal: false
+    runtimeId: b3dc
+    description: Page <caption>New - Routing</caption> was shown.
+  - type: focus
+    target:
+      - page: Routing
+        runtimeRef: b3dc
+      - field: No.
+    description: Focus <caption>No.</caption>
+  - type: input
+    target:
+      - page: Routing
+        runtimeRef: b3dc
+      - field: No.
+    value: TEST1
+    description: Input <value>TEST1</value> into <caption>No.</caption>
+  - type: focus
+    target:
+      - page: Routing
+        runtimeRef: b3dc
+      - field: Description
+    description: Focus <caption>Description</caption>
+  - type: invoke
+    target:
+      - page: Routing
+        runtimeRef: b3dc
+      - action: Copy &Routing
+    parameters: {}
+    description: Invoke <caption>Copy Routing...</caption>
+  - type: page-shown
+    source:
+      page: Routing List
+    modal: true
+    runtimeId: b3jo
+    description: Page <caption>Routings</caption> was shown.
+  - type: input
+    target:
+      - page: Routing List
+        runtimeRef: b3jo
+      - scope: filter
+        field: filter:system:search
+    value: si
+    isFilterAsYouType: true
+    description: Input <value>si</value> into <caption>Search</caption>
+  - type: input
+    target:
+      - page: Routing List
+        runtimeRef: b3jo
+      - scope: filter
+        field: filter:system:search
+    value: sigb
+    isFilterAsYouType: true
+    description: Input <value>sigb</value> into <caption>Search</caption>
+  - type: invoke
+    target:
+      - page: Routing List
+        runtimeRef: b3jo
+      - repeater: Control1
+    parameters:
+      AlwaysCommit: false
+    description: Invoke row on <caption>Control1</caption>
+  - type: page-closed
+    source:
+      page: Routing List
+    runtimeId: b3jo
+    description: Page <caption>Routings</caption> was closed.
+  - type: input
+    target:
+      - page: Routing
+        runtimeRef: b3dc
+      - field: Status
+    value: 1
+    description: Input <value>1</value> into <caption>Status</caption>

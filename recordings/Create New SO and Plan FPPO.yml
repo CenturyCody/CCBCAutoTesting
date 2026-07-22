@@ -1,0 +1,207 @@
+name: Create New SO and Plan FPPO
+description: Test recording
+telemetryId: f5cd3120-d4a0-4be4-bb15-1db7b7e79f0a
+start:
+  profile: BUSINESS MANAGER
+steps:
+  - type: navigate
+    target:
+      - page: Business Manager Role Center
+      - action: Sales Order List44565
+    description: Navigate to <caption>Sales Orders</caption>
+  - type: page-shown
+    source:
+      page: Sales Order List
+    modal: false
+    runtimeId: bd64
+    description: Page <caption>Sales Orders</caption> was shown.
+  - type: invoke
+    target:
+      - page: Sales Order List
+        runtimeRef: bd64
+      - action: Control_New
+    invokeType: New
+    description: Invoke New on <caption>New</caption>
+  - type: page-shown
+    source:
+      page: Sales Order
+    modal: false
+    runtimeId: bdff
+    description: Page <caption>New - Sales Order</caption> was shown.
+  - type: focus
+    target:
+      - page: Sales Order
+        runtimeRef: bdff
+      - field: Sell-to Customer No.
+    description: Focus <caption>Customer No.</caption>
+  - type: input
+    target:
+      - page: Sales Order
+        runtimeRef: bdff
+      - field: Sell-to Customer No.
+    value: koch
+    isFilterAsYouType: true
+    description: Input <value>koch</value> into <caption>Customer No.</caption>
+  - type: page-shown
+    source:
+      page: lookup:Sell-to Customer No.
+    modal: false
+    runtimeId: bebc
+    description: Page <caption>Select</caption> was shown.
+  - type: invoke
+    target:
+      - page: lookup:Sell-to Customer No.
+        runtimeRef: bebc
+      - repeater: repeater
+    parameters:
+      AlwaysCommit: true
+    description: Invoke row on <caption>repeater</caption>
+  - type: page-closed
+    source:
+      page: lookup:Sell-to Customer No.
+    runtimeId: bebc
+    description: Page <caption>Select</caption> was closed.
+  - type: page-shown
+    source:
+      page: ERC ANT Customer PopUp Note
+    modal: true
+    runtimeId: becf
+    description: Page <caption>Customer PopUp Note</caption> was shown.
+  - type: invoke
+    target:
+      - page: ERC ANT Customer PopUp Note
+        runtimeRef: becf
+    invokeType: Cancel
+    description: Invoke Cancel on <caption>Customer PopUp Note</caption>
+  - type: page-closed
+    source:
+      page: ERC ANT Customer PopUp Note
+    runtimeId: becf
+    description: Page <caption>Customer PopUp Note</caption> was closed.
+  - type: input
+    target:
+      - page: Sales Order
+        runtimeRef: bdff
+      - field: Your Reference
+    value: Scripting Test
+    description: Input <value>Scripting Test</value> into <caption>Your Reference</caption>
+  - type: focus
+    target:
+      - page: Sales Order
+        runtimeRef: bdff
+      - field: Salesperson Code
+    description: Focus <caption>Salesperson Code</caption>
+  - type: input
+    target:
+      - page: Sales Order
+        runtimeRef: bdff
+      - part: SalesLines
+      - page: Sales Order Subform
+      - repeater: Control1
+      - field: No.
+    value: ""
+    isFilterAsYouType: true
+    description: Input <value></value> into <caption>No.</caption>
+  - type: focus
+    target:
+      - page: Sales Order
+        runtimeRef: bdff
+      - part: SalesLines
+      - page: Sales Order Subform
+      - repeater: Control1
+      - field: No.
+    description: Focus <caption>No.</caption>
+  - type: page-shown
+    source:
+      page: lookup:No.
+    modal: false
+    runtimeId: bedj
+    description: Page <caption>Select</caption> was shown.
+  - type: input
+    target:
+      - page: Sales Order
+        runtimeRef: bdff
+      - part: SalesLines
+      - page: Sales Order Subform
+      - repeater: Control1
+      - field: No.
+    value: test1
+    description: Input <value>test1</value> into <caption>No.</caption>
+  - type: close-page
+    target:
+      - page: lookup:No.
+        runtimeRef: bedj
+    description: Close page <caption>Select</caption>
+  - type: page-closed
+    source:
+      page: lookup:No.
+    runtimeId: bedj
+    description: Page <caption>Select</caption> was closed.
+  - type: focus
+    target:
+      - page: Sales Order
+        runtimeRef: bdff
+      - part: SalesLines
+      - page: Sales Order Subform
+      - repeater: Control1
+      - field: Quantity
+    description: Focus <caption>Quantity</caption>
+  - type: invoke
+    target:
+      - page: Sales Order
+        runtimeRef: bdff
+      - action: Pla&nning
+    description: Invoke <caption>Planning</caption>
+  - type: page-shown
+    source:
+      page: Sales Order Planning
+    modal: true
+    runtimeId: beed
+    description: Page <caption>Sales Order Planning</caption> was shown.
+  - type: invoke
+    target:
+      - page: Sales Order Planning
+        runtimeRef: beed
+      - action: "&Create Prod. Order"
+    parameters: {}
+    description: Invoke <caption>Create Prod. Order</caption>
+  - type: page-shown
+    source:
+      page: Create Order From Sales
+    modal: true
+    runtimeId: beh3
+    description: Page <caption>Create Order From Sales</caption> was shown.
+  - type: input
+    target:
+      - page: Create Order From Sales
+        runtimeRef: beh3
+      - field: OrderType
+    value: 1
+    description: Input <value>1</value> into <caption>Order Type</caption>
+  - type: invoke
+    target:
+      - page: Create Order From Sales
+        runtimeRef: beh3
+    invokeType: Yes
+    description: Invoke Yes on <caption>Create Order From Sales</caption>
+  - type: page-closed
+    source:
+      page: Create Order From Sales
+    runtimeId: beh3
+    description: Page <caption>Create Order From Sales</caption> was closed.
+  - type: message
+    automationId: 8da61efd-0002-0003-0507-0b0d1113171d
+    text: Firm Planned Prod. Order FPPO0107 has been created.
+    description: "Message: <value>Firm Planned Prod. Order FPPO0107 has been
+      created.</value>"
+  - type: invoke
+    target:
+      - page: Sales Order Planning
+        runtimeRef: beed
+    invokeType: CloseOk
+    description: Invoke CloseOk on <caption>Sales Order Planning</caption>
+  - type: page-closed
+    source:
+      page: Sales Order Planning
+    runtimeId: beed
+    description: Page <caption>Sales Order Planning</caption> was closed.

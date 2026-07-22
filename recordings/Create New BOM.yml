@@ -1,0 +1,162 @@
+name: Create New BOM
+description: Test recording
+telemetryId: 16af0b7a-cb71-4972-a7f2-b7f9eaa120a8
+start:
+  profile: BUSINESS MANAGER
+steps:
+  - type: navigate
+    target:
+      - page: Business Manager Role Center
+      - action: Production BOM List43711
+    description: Navigate to <caption>Production BOMs</caption>
+  - type: page-closed
+    source:
+      page: Routing List
+    runtimeId: b3b6
+    description: Page <caption>Routings</caption> was closed.
+  - type: page-shown
+    source:
+      page: Production BOM List
+    modal: false
+    runtimeId: b3w9
+    description: Page <caption>Production BOMs</caption> was shown.
+  - type: invoke
+    target:
+      - page: Production BOM List
+        runtimeRef: b3w9
+      - action: Control_New
+    invokeType: New
+    description: Invoke New on <caption>New</caption>
+  - type: page-shown
+    source:
+      page: Production BOM
+    modal: false
+    runtimeId: b40a
+    description: Page <caption>New - Production BOM</caption> was shown.
+  - type: focus
+    target:
+      - page: Production BOM
+        runtimeRef: b40a
+      - field: No.
+    description: Focus <caption>No.</caption>
+  - type: input
+    target:
+      - page: Production BOM
+        runtimeRef: b40a
+      - field: No.
+    value: TEST1
+    description: Input <value>TEST1</value> into <caption>No.</caption>
+  - type: focus
+    target:
+      - page: Production BOM
+        runtimeRef: b40a
+      - field: Description
+    description: Focus <caption>Description</caption>
+  - type: input
+    target:
+      - page: Production BOM
+        runtimeRef: b40a
+      - field: Unit of Measure Code
+    value: ea
+    description: Input <value>ea</value> into <caption>Unit of Measure Code</caption>
+  - type: focus
+    target:
+      - page: Production BOM
+        runtimeRef: b40a
+      - field: Status
+    description: Focus <caption>Status</caption>
+  - type: invoke
+    target:
+      - page: Production BOM
+        runtimeRef: b40a
+      - action: Copy &BOM
+    parameters: {}
+    description: Invoke <caption>Copy BOM...</caption>
+  - type: page-shown
+    source:
+      page: Production BOM List
+    modal: true
+    runtimeId: b44x
+    description: Page <caption>Production BOMs</caption> was shown.
+  - type: input
+    target:
+      - page: Production BOM List
+        runtimeRef: b44x
+      - scope: filter
+        field: filter:system:search
+    value: sigbm14
+    isFilterAsYouType: true
+    description: Input <value>sigbm14</value> into <caption>Search</caption>
+  - type: set-current-row
+    target:
+      - page: Production BOM List
+        runtimeRef: b44x
+      - repeater: Control1
+    targetRecord:
+      relative: 4
+    description: Set current row in <caption>Control1</caption>
+  - type: invoke
+    target:
+      - page: Production BOM List
+        runtimeRef: b44x
+      - repeater: Control1
+    parameters:
+      AlwaysCommit: false
+    description: Invoke row on <caption>Control1</caption>
+  - type: page-closed
+    source:
+      page: Production BOM List
+    runtimeId: b44x
+    description: Page <caption>Production BOMs</caption> was closed.
+  - type: set-current-row
+    target:
+      - page: Production BOM
+        runtimeRef: b40a
+      - part: ProdBOMLine
+      - page: Production BOM Lines
+      - repeater: Control1
+    targetRecord:
+      relative: -20
+    description: Set current row in <caption>Control1</caption>
+  - type: focus
+    target:
+      - page: Production BOM
+        runtimeRef: b40a
+      - part: ProdBOMLine
+      - page: Production BOM Lines
+      - repeater: Control1
+      - field: No.
+    description: Focus <caption>No.</caption>
+  - type: input
+    target:
+      - page: Production BOM
+        runtimeRef: b40a
+      - part: ProdBOMLine
+      - page: Production BOM Lines
+      - repeater: Control1
+      - field: No.
+    value: CASBM145-34
+    description: Input <value>CASBM145-34</value> into <caption>No.</caption>
+  - type: focus
+    target:
+      - page: Production BOM
+        runtimeRef: b40a
+      - field: Status
+    description: Focus <caption>Status</caption>
+  - type: input
+    target:
+      - page: Production BOM
+        runtimeRef: b40a
+      - field: Status
+    value: 1
+    description: Input <value>1</value> into <caption>Status</caption>
+  - type: close-page
+    target:
+      - page: Production BOM
+        runtimeRef: b40a
+    description: Close page <caption>Production BOM</caption>
+  - type: page-closed
+    source:
+      page: Production BOM
+    runtimeId: b40a
+    description: Page <caption>Production BOM</caption> was closed.

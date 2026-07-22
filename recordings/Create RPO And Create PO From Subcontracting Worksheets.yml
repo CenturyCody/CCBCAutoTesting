@@ -1,0 +1,315 @@
+name: Create RPO And Create PO From Subcontracting Worksheets
+description: Test recording
+telemetryId: 8f9447d6-b994-4773-a015-ede34a63efb8
+start:
+  profile: BUSINESS MANAGER
+steps:
+  - type: navigate
+    target:
+      - page: Business Manager Role Center
+      - action: Released Production Orders28012
+    description: Navigate to <caption>Released Production Orders</caption>
+  - type: page-shown
+    source:
+      page: Released Production Orders
+    modal: false
+    runtimeId: bgyd
+    description: Page <caption>Released Production Orders</caption> was shown.
+  - type: invoke
+    target:
+      - page: Released Production Orders
+        runtimeRef: bgyd
+      - action: Control_New
+    invokeType: New
+    description: Invoke New on <caption>New</caption>
+  - type: page-shown
+    source:
+      page: Released Production Order
+    modal: false
+    runtimeId: bh33
+    description: Page <caption>New - Released Production Order</caption> was shown.
+  - type: focus
+    target:
+      - page: Released Production Order
+        runtimeRef: bh33
+      - field: No.
+    description: Focus <caption>No.</caption>
+  - type: focus
+    target:
+      - page: Released Production Order
+        runtimeRef: bh33
+      - field: Source No.
+    description: Focus <caption>Source No.</caption>
+  - type: input
+    target:
+      - page: Released Production Order
+        runtimeRef: bh33
+      - field: Source No.
+    value: ""
+    isFilterAsYouType: true
+    description: Input <value></value> into <caption>Source No.</caption>
+  - type: page-shown
+    source:
+      page: lookup:Source No.
+    modal: false
+    runtimeId: bhbi
+    description: Page <caption>Select</caption> was shown.
+  - type: input
+    target:
+      - page: Released Production Order
+        runtimeRef: bh33
+      - field: Source No.
+    value: casbm145-34
+    isFilterAsYouType: true
+    description: Input <value>casbm145-34</value> into <caption>Source No.</caption>
+  - type: invoke
+    target:
+      - page: lookup:Source No.
+        runtimeRef: bhbi
+      - repeater: repeater
+    parameters:
+      AlwaysCommit: true
+    description: Invoke row on <caption>repeater</caption>
+  - type: page-closed
+    source:
+      page: lookup:Source No.
+    runtimeId: bhbi
+    description: Page <caption>Select</caption> was closed.
+  - type: input
+    target:
+      - page: Released Production Order
+        runtimeRef: bh33
+      - field: Source No.
+    value: casbm145-34
+    description: Input <value>casbm145-34</value> into <caption>Source No.</caption>
+  - type: input
+    target:
+      - page: Released Production Order
+        runtimeRef: bh33
+      - field: Quantity
+    value: "3"
+    description: Input <value>3</value> into <caption>Quantity</caption>
+  - type: focus
+    target:
+      - page: Released Production Order
+        runtimeRef: bh33
+      - field: Production Date
+    description: Focus <caption>Production Date</caption>
+  - type: invoke
+    target:
+      - page: Released Production Order
+        runtimeRef: bh33
+      - action: RefreshProductionOrder
+    parameters: {}
+    description: Invoke <caption>Refresh Production Order...</caption>
+  - type: page-shown
+    source:
+      page: Refresh Production Order
+    modal: true
+    runtimeId: bhcc
+    description: Page <caption>Refresh Production Order</caption> was shown.
+  - type: invoke
+    target:
+      - page: Refresh Production Order
+        runtimeRef: bhcc
+    invokeType: Ok
+    description: Invoke Ok on <caption>Refresh Production Order</caption>
+  - type: page-closed
+    source:
+      page: Refresh Production Order
+    runtimeId: bhcc
+    description: Page <caption>Refresh Production Order</caption> was closed.
+  - type: input
+    target:
+      - page: Released Production Order
+        runtimeRef: bh33
+      - field: Due Date
+    value: 4/14/2026
+    description: Input <value>4/14/2026</value> into <caption>Due Date</caption>
+  - type: input
+    target:
+      - page: Released Production Order
+        runtimeRef: bh33
+      - field: Due Date
+    value: "1231"
+    description: Input <value>1231</value> into <caption>Due Date</caption>
+  - type: focus
+    target:
+      - page: Released Production Order
+        runtimeRef: bh33
+      - field: Description
+    description: Focus <caption>Description</caption>
+  - type: close-page
+    target:
+      - page: Released Production Order
+        runtimeRef: bh33
+    description: Close page <caption>Released Production Order</caption>
+  - type: page-closed
+    source:
+      page: Released Production Order
+    runtimeId: bh33
+    description: Page <caption>Released Production Order</caption> was closed.
+  - type: navigate
+    target:
+      - page: Business Manager Role Center
+      - action: Subcontracting Worksheet25188
+    description: Navigate to <caption>Subcontracting Worksheets</caption>
+  - type: page-shown
+    source:
+      page: Subcontracting Worksheet
+    modal: false
+    runtimeId: bhdd
+    description: Page <caption>Subcontracting Worksheets</caption> was shown.
+  - type: focus
+    target:
+      - page: Subcontracting Worksheet
+        runtimeRef: bhdd
+      - repeater: Control1
+      - field: Type
+    description: Focus <caption>Type</caption>
+  - type: focus
+    target:
+      - page: Subcontracting Worksheet
+        runtimeRef: bhdd
+      - field: null
+        automationId: fb8cccf3-54ac-4d77-9ad8-136cec25583a
+        caption: null
+    description: Focus <caption>null</caption>
+  - type: invoke
+    target:
+      - page: Subcontracting Worksheet
+        runtimeRef: bhdd
+      - action: Calculate Subcontracts
+    parameters: {}
+    description: Invoke <caption>Calculate Subcontracts...</caption>
+  - type: page-shown
+    source:
+      page: Calculate Subcontracts
+    modal: true
+    runtimeId: bhib
+    description: Page <caption>Calculate Subcontracts</caption> was shown.
+  - type: invoke
+    target:
+      - page: Calculate Subcontracts
+        runtimeRef: bhib
+    invokeType: Ok
+    description: Invoke Ok on <caption>Calculate Subcontracts</caption>
+  - type: page-closed
+    source:
+      page: Calculate Subcontracts
+    runtimeId: bhib
+    description: Page <caption>Calculate Subcontracts</caption> was closed.
+  - type: focus
+    target:
+      - page: Subcontracting Worksheet
+        runtimeRef: bhdd
+      - field: null
+        automationId: fb8cccf3-54ac-4d77-9ad8-136cec25583a
+        caption: null
+    description: Focus <caption>null</caption>
+  - type: focus
+    target:
+      - page: Subcontracting Worksheet
+        runtimeRef: bhdd
+      - field: null
+        automationId: fb8cccf3-54ac-4d77-9ad8-136cec25583a
+        caption: null
+    description: Focus <caption>null</caption>
+  - type: invoke
+    target:
+      - page: Subcontracting Worksheet
+        runtimeRef: bhdd
+      - action: CarryOutActionMessage
+    parameters: {}
+    description: Invoke <caption>Carry Out Action Message...</caption>
+  - type: page-shown
+    source:
+      page: Carry Out Action Msg. - Req.
+    modal: true
+    runtimeId: bhj5
+    description: Page <caption>Carry Out Action Msg. - Req.</caption> was shown.
+  - type: invoke
+    target:
+      - page: Carry Out Action Msg. - Req.
+        runtimeRef: bhj5
+    invokeType: Ok
+    description: Invoke Ok on <caption>Carry Out Action Msg. - Req.</caption>
+  - type: page-closed
+    source:
+      page: Carry Out Action Msg. - Req.
+    runtimeId: bhj5
+    description: Page <caption>Carry Out Action Msg. - Req.</caption> was closed.
+  - type: focus
+    target:
+      - page: Subcontracting Worksheet
+        runtimeRef: bhdd
+      - field: null
+        automationId: fb8cccf3-54ac-4d77-9ad8-136cec25583a
+        caption: null
+    description: Focus <caption>null</caption>
+  - type: close-page
+    target:
+      - page: Subcontracting Worksheet
+        runtimeRef: bhdd
+    description: Close page <caption>Subcontracting Worksheets</caption>
+  - type: page-closed
+    source:
+      page: Subcontracting Worksheet
+    runtimeId: bhdd
+    description: Page <caption>Subcontracting Worksheets</caption> was closed.
+  - type: navigate
+    target:
+      - page: Business Manager Role Center
+      - action: Purchase Order List90575
+    description: Navigate to <caption>Purchase Orders</caption>
+  - type: page-closed
+    source:
+      page: Business Manager Role Center
+    runtimeId: b3lr
+    description: Page <caption>Business Manager</caption> was closed.
+  - type: page-shown
+    source:
+      page: Purchase Order List
+    modal: false
+    runtimeId: bhjl
+    description: Page <caption>Purchase Orders</caption> was shown.
+  - type: invoke
+    target:
+      - page: Purchase Order List
+        runtimeRef: bhjl
+      - action: aa49406f-6f68-4565-b857-496faa0e77aa_Brent's20054
+    parameters:
+      NavigationNodeId: 00000000-4de4-0000-1537-2f00836bd2d2
+      IgnoreControlVisibility: false
+    description: Invoke <caption>Brent's Open</caption>
+  - type: page-closed
+    source:
+      page: Purchase Order List
+    runtimeId: bhjl
+    description: Page <caption>Purchase Orders</caption> was closed.
+  - type: page-closed
+    source:
+      page: Released Production Orders
+    runtimeId: bgyd
+    description: Page <caption>Released Production Orders</caption> was closed.
+  - type: page-shown
+    source:
+      page: Purchase Order List
+    modal: false
+    runtimeId: bhwm
+    description: Page <caption>Brent's Open</caption> was shown.
+  - type: invoke
+    target:
+      - page: Purchase Order List
+        runtimeRef: bhwm
+      - repeater: Control1
+    invokeType: Edit
+    parameters:
+      AlwaysCommit: false
+    description: Invoke row on <caption>Control1</caption>
+  - type: page-shown
+    source:
+      page: Purchase Order
+    modal: false
+    runtimeId: bixf
+    description: Page <caption>Purchase Order</caption> was shown.

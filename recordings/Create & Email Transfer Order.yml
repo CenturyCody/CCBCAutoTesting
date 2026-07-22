@@ -1,0 +1,298 @@
+name: Create & Email Transfer Order
+description: Test recording
+telemetryId: 051761fc-d3ef-47dc-afdc-171a8310a9a9
+start:
+  profile: BUSINESS MANAGER
+steps:
+  - type: navigate
+    target:
+      - page: Business Manager Role Center
+      - action: Transfer Orders75441
+    description: Navigate to <caption>Transfer Orders</caption>
+  - type: page-closed
+    source:
+      page: Transfer Orders
+    runtimeId: b980
+    description: Page <caption>Transfer Orders</caption> was closed.
+  - type: page-shown
+    source:
+      page: Transfer Orders
+    modal: false
+    runtimeId: b9nj
+    description: Page <caption>Transfer Orders</caption> was shown.
+  - type: invoke
+    target:
+      - page: Transfer Orders
+        runtimeRef: b9nj
+      - action: Control_New
+    invokeType: New
+    description: Invoke New on <caption>New</caption>
+  - type: page-shown
+    source:
+      page: Transfer Order
+    modal: false
+    runtimeId: b9sk
+    description: Page <caption>New - Transfer Order</caption> was shown.
+  - type: focus
+    target:
+      - page: Transfer Order
+        runtimeRef: b9sk
+      - field: Transfer-from Code
+    description: Focus <caption>Transfer-from Code</caption>
+  - type: input
+    target:
+      - page: Transfer Order
+        runtimeRef: b9sk
+      - field: Transfer-from Code
+    value: bld
+    isFilterAsYouType: true
+    description: Input <value>bld</value> into <caption>Transfer-from Code</caption>
+  - type: page-shown
+    source:
+      page: lookup:Transfer-from Code
+    modal: false
+    runtimeId: ba0h
+    description: Page <caption>Select</caption> was shown.
+  - type: input
+    target:
+      - page: Transfer Order
+        runtimeRef: b9sk
+      - field: Transfer-from Code
+    value: bld-
+    isFilterAsYouType: true
+    description: Input <value>bld-</value> into <caption>Transfer-from Code</caption>
+  - type: input
+    target:
+      - page: Transfer Order
+        runtimeRef: b9sk
+      - field: Transfer-from Code
+    value: bld-b
+    isFilterAsYouType: true
+    description: Input <value>bld-b</value> into <caption>Transfer-from Code</caption>
+  - type: input
+    target:
+      - page: Transfer Order
+        runtimeRef: b9sk
+      - field: Transfer-from Code
+    value: bld-b
+    description: Input <value>bld-b</value> into <caption>Transfer-from Code</caption>
+  - type: close-page
+    target:
+      - page: lookup:Transfer-from Code
+        runtimeRef: ba0h
+    description: Close page <caption>Select</caption>
+  - type: page-closed
+    source:
+      page: lookup:Transfer-from Code
+    runtimeId: ba0h
+    description: Page <caption>Select</caption> was closed.
+  - type: input
+    target:
+      - page: Transfer Order
+        runtimeRef: b9sk
+      - field: Transfer-to Code
+    value: heritage
+    isFilterAsYouType: true
+    description: Input <value>heritage</value> into <caption>Transfer-to Code</caption>
+  - type: page-shown
+    source:
+      page: lookup:Transfer-to Code
+    modal: false
+    runtimeId: ba18
+    description: Page <caption>Select</caption> was shown.
+  - type: invoke
+    target:
+      - page: lookup:Transfer-to Code
+        runtimeRef: ba18
+      - repeater: repeater
+    parameters:
+      AlwaysCommit: true
+    description: Invoke row on <caption>repeater</caption>
+  - type: page-closed
+    source:
+      page: lookup:Transfer-to Code
+    runtimeId: ba18
+    description: Page <caption>Select</caption> was closed.
+  - type: input
+    target:
+      - page: Transfer Order
+        runtimeRef: b9sk
+      - part: TransferLines
+      - page: Transfer Order Subform
+      - repeater: Control1
+      - field: Item No.
+    value: ""
+    isFilterAsYouType: true
+    description: Input <value></value> into <caption>Item No.</caption>
+  - type: focus
+    target:
+      - page: Transfer Order
+        runtimeRef: b9sk
+      - part: TransferLines
+      - page: Transfer Order Subform
+      - repeater: Control1
+      - field: Item No.
+    description: Focus <caption>Item No.</caption>
+  - type: page-shown
+    source:
+      page: lookup:Item No.
+    modal: false
+    runtimeId: ba1w
+    description: Page <caption>Select</caption> was shown.
+  - type: input
+    target:
+      - page: Transfer Order
+        runtimeRef: b9sk
+      - part: TransferLines
+      - page: Transfer Order Subform
+      - repeater: Control1
+      - field: Item No.
+    value: wst
+    isFilterAsYouType: true
+    description: Input <value>wst</value> into <caption>Item No.</caption>
+  - type: input
+    target:
+      - page: Transfer Order
+        runtimeRef: b9sk
+      - part: TransferLines
+      - page: Transfer Order Subform
+      - repeater: Control1
+      - field: Item No.
+    value: wst14
+    isFilterAsYouType: true
+    description: Input <value>wst14</value> into <caption>Item No.</caption>
+  - type: invoke
+    target:
+      - page: lookup:Item No.
+        runtimeRef: ba1w
+      - repeater: repeater
+    parameters:
+      AlwaysCommit: true
+    description: Invoke row on <caption>repeater</caption>
+  - type: page-closed
+    source:
+      page: lookup:Item No.
+    runtimeId: ba1w
+    description: Page <caption>Select</caption> was closed.
+  - type: input
+    target:
+      - page: Transfer Order
+        runtimeRef: b9sk
+      - part: TransferLines
+      - page: Transfer Order Subform
+      - repeater: Control1
+      - field: Quantity
+    value: "12"
+    description: Input <value>12</value> into <caption>Quantity</caption>
+  - type: focus
+    target:
+      - page: Transfer Order
+        runtimeRef: b9sk
+      - field: null
+        automationId: fb8cccf3-54ac-4d77-9ad8-136cec25583a
+        caption: null
+    description: Focus <caption>null</caption>
+  - type: invoke
+    target:
+      - page: Transfer Order
+        runtimeRef: b9sk
+      - action: EmailCEN
+    parameters: {}
+    description: Invoke <caption>Email</caption>
+  - type: page-shown
+    source:
+      page: Email Editor
+    modal: false
+    runtimeId: ba2p
+    description: Page <caption>Compose an Email</caption> was shown.
+  - type: input
+    target:
+      - page: Email Editor
+        runtimeRef: ba2p
+      - field: ToField
+    value: brentmiller@upwardmail.com
+    description: Input <value>brentmiller@upwardmail.com</value> into <caption>To</caption>
+  - type: focus
+    target:
+      - page: Email Editor
+        runtimeRef: ba2p
+      - field: SubjectField
+    description: Focus <caption>Subject</caption>
+  - type: input
+    target:
+      - page: Email Editor
+        runtimeRef: ba2p
+      - field: BodyField
+    value: test
+    description: Input <value>test</value> into <caption>Message</caption>
+  - type: focus
+    target:
+      - page: Email Editor
+        runtimeRef: ba2p
+      - field: null
+        automationId: fb8cccf3-54ac-4d77-9ad8-136cec25583a
+        caption: null
+    description: Focus <caption>null</caption>
+  - type: invoke
+    target:
+      - page: Email Editor
+        runtimeRef: ba2p
+      - action: Send
+    parameters: {}
+    description: Invoke <caption>Send Email</caption>
+  - type: page-shown
+    source:
+      page: null
+      automationId: 8da61efd-0002-0003-0507-0b0d1113171d
+      caption: Confirm
+    modal: true
+    runtimeId: ba4l
+    description: Page <caption>Confirm</caption> was shown.
+  - type: invoke
+    target:
+      - page: null
+        automationId: 8da61efd-0002-0003-0507-0b0d1113171d
+        caption: Confirm
+        runtimeRef: ba4l
+    invokeType: Yes
+    description: Invoke Yes on <caption>Confirm</caption>
+  - type: page-closed
+    source:
+      page: null
+    runtimeId: ba4l
+    description: Page <caption>Confirm</caption> was closed.
+  - type: page-shown
+    source:
+      page: null
+      automationId: 73730238-ad83-42d7-aaac-6bae56f3f262
+      caption: Choose
+    modal: true
+    runtimeId: ba4r
+    description: Page <caption>Choose</caption> was shown.
+  - type: input
+    target:
+      - page: null
+        automationId: 73730238-ad83-42d7-aaac-6bae56f3f262
+        caption: Choose
+        runtimeRef: ba4r
+      - field: AL:STRMENU
+    value: 1
+    description: Input <value>1</value> into <caption>AL:STRMENU</caption>
+  - type: invoke
+    target:
+      - page: null
+        automationId: 73730238-ad83-42d7-aaac-6bae56f3f262
+        caption: Choose
+        runtimeRef: ba4r
+    invokeType: Ok
+    description: Invoke Ok on <caption>Choose</caption>
+  - type: page-closed
+    source:
+      page: null
+    runtimeId: ba4r
+    description: Page <caption>Choose</caption> was closed.
+  - type: page-closed
+    source:
+      page: Email Editor
+    runtimeId: ba2p
+    description: Page <caption>Compose an Email</caption> was closed.

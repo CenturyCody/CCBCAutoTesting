@@ -1,0 +1,345 @@
+name: Create New Item
+description: Test recording
+telemetryId: 197e38bf-40fc-46c1-b743-610dfc7802d4
+start:
+  profile: BUSINESS MANAGER
+steps:
+  - type: navigate
+    target:
+      - page: Business Manager Role Center
+      - action: Items
+    description: Navigate to <caption>Items</caption>
+  - type: page-shown
+    source:
+      page: Item List
+    modal: false
+    runtimeId: b482
+    description: Page <caption>Items</caption> was shown.
+  - type: input
+    target:
+      - page: Item List
+        runtimeRef: b482
+      - scope: filter
+        field: filter:system:search
+    value: sigbm145
+    isFilterAsYouType: true
+    description: Input <value>sigbm145</value> into <caption>Search</caption>
+  - type: set-current-row
+    target:
+      - page: Item List
+        runtimeRef: b482
+      - repeater: Control1
+    targetRecord:
+      relative: 1
+    description: Set current row in <caption>Item</caption>
+  - type: invoke
+    target:
+      - page: Item List
+        runtimeRef: b482
+      - repeater: Control1
+    invokeType: Edit
+    parameters:
+      AlwaysCommit: false
+    description: Invoke row on <caption>Item</caption>
+  - type: page-shown
+    source:
+      page: Item Card
+    modal: false
+    runtimeId: b4nz
+    description: Page <caption>Item Card</caption> was shown.
+  - type: invoke
+    target:
+      - page: Item Card
+        runtimeRef: b4nz
+      - action: CopyItem
+    parameters: {}
+    description: Invoke <caption>Copy Item</caption>
+  - type: page-shown
+    source:
+      page: Copy Item
+    modal: true
+    runtimeId: b53w
+    description: Page <caption>Copy Item</caption> was shown.
+  - type: input
+    target:
+      - page: Copy Item
+        runtimeRef: b53w
+      - field: TargetItemNo
+    value: TEST1
+    description: Input <value>TEST1</value> into <caption>Target Item No.</caption>
+  - type: input
+    target:
+      - page: Copy Item
+        runtimeRef: b53w
+      - field: ShowCreatedItems
+    value: true
+    description: Input <value>true</value> into <caption>Show Created Items</caption>
+  - type: input
+    target:
+      - page: Copy Item
+        runtimeRef: b53w
+      - field: CopyAllInformation
+    value: false
+    description: Input <value>false</value> into <caption>Copy All Information</caption>
+  - type: input
+    target:
+      - page: Copy Item
+        runtimeRef: b53w
+      - field: UnitsOfMeasure
+    value: true
+    description: Input <value>true</value> into <caption>Units of measure</caption>
+  - type: input
+    target:
+      - page: Copy Item
+        runtimeRef: b53w
+      - field: Dimensions
+    value: true
+    description: Input <value>true</value> into <caption>Dimensions</caption>
+  - type: invoke
+    target:
+      - page: Copy Item
+        runtimeRef: b53w
+    invokeType: Ok
+    description: Invoke Ok on <caption>Copy Item</caption>
+  - type: page-closed
+    source:
+      page: Copy Item
+    runtimeId: b53w
+    description: Page <caption>Copy Item</caption> was closed.
+  - type: page-shown
+    source:
+      page: Item Card
+    modal: false
+    runtimeId: b54y
+    description: Page <caption>Item Card</caption> was shown.
+  - type: input
+    target:
+      - page: Item Card
+        runtimeRef: b54y
+      - field: Description
+    value: TEST1 Desc
+    description: Input <value>TEST1 Desc</value> into <caption>Description</caption>
+  - type: focus
+    target:
+      - page: Item Card
+        runtimeRef: b54y
+      - field: Common Item No.
+    description: Focus <caption>Common Item No.</caption>
+  - type: input
+    target:
+      - page: Item Card
+        runtimeRef: b54y
+      - field: Common Item No.
+    value: ""
+    description: Input <value></value> into <caption>Common Item No.</caption>
+  - type: focus
+    target:
+      - page: Item Card
+        runtimeRef: b54y
+      - field: Purchasing Code
+    description: Focus <caption>Purchasing Code</caption>
+  - type: input
+    target:
+      - page: Item Card
+        runtimeRef: b54y
+      - field: GTIN
+    value: ""
+    description: Input <value></value> into <caption>GTIN</caption>
+  - type: focus
+    target:
+      - page: Item Card
+        runtimeRef: b54y
+      - field: Item Category Code
+    description: Focus <caption>Item Category Code</caption>
+  - type: input
+    target:
+      - page: Item Card
+        runtimeRef: b54y
+      - field: Unit Cost
+    value: ""
+    description: Input <value></value> into <caption>Unit Cost</caption>
+  - type: focus
+    target:
+      - page: Item Card
+        runtimeRef: b54y
+      - field: ERC Unit Cost - Commissions
+    description: Focus <caption>Adjusted Unit Cost (COM)</caption>
+  - type: focus
+    target:
+      - page: Item Card
+        runtimeRef: b54y
+      - field: Indirect Cost %
+    description: Focus <caption>Indirect Cost %</caption>
+  - type: input
+    target:
+      - page: Item Card
+        runtimeRef: b54y
+      - field: Last Direct Cost
+    value: ""
+    description: Input <value></value> into <caption>Last Direct Cost</caption>
+  - type: focus
+    target:
+      - page: Item Card
+        runtimeRef: b54y
+      - field: Net Invoiced Qty.
+    description: Focus <caption>Net Invoiced Qty.</caption>
+  - type: input
+    target:
+      - page: Item Card
+        runtimeRef: b54y
+      - field: Unit Price
+    value: ""
+    description: Input <value></value> into <caption>Unit Price</caption>
+  - type: focus
+    target:
+      - page: Item Card
+        runtimeRef: b54y
+      - field: Price/Profit Calculation
+    description: Focus <caption>Price/Profit Calculation</caption>
+  - type: input
+    target:
+      - page: Item Card
+        runtimeRef: b54y
+      - field: Routing No.
+    value: tes
+    isFilterAsYouType: true
+    description: Input <value>tes</value> into <caption>Routing No.</caption>
+  - type: page-shown
+    source:
+      page: lookup:Routing No.
+    modal: false
+    runtimeId: b5kz
+    description: Page <caption>Select</caption> was shown.
+  - type: set-current-row
+    target:
+      - page: lookup:Routing No.
+        runtimeRef: b5kz
+      - repeater: repeater
+    targetRecord:
+      relative: 4
+    description: Set current row in <caption>repeater</caption>
+  - type: invoke
+    target:
+      - page: lookup:Routing No.
+        runtimeRef: b5kz
+      - repeater: repeater
+    parameters:
+      AlwaysCommit: true
+    description: Invoke row on <caption>repeater</caption>
+  - type: page-closed
+    source:
+      page: lookup:Routing No.
+    runtimeId: b5kz
+    description: Page <caption>Select</caption> was closed.
+  - type: input
+    target:
+      - page: Item Card
+        runtimeRef: b54y
+      - field: Production BOM No.
+    value: test
+    isFilterAsYouType: true
+    description: Input <value>test</value> into <caption>Production BOM No.</caption>
+  - type: page-shown
+    source:
+      page: lookup:Production BOM No.
+    modal: false
+    runtimeId: b5lk
+    description: Page <caption>Select</caption> was shown.
+  - type: input
+    target:
+      - page: Item Card
+        runtimeRef: b54y
+      - field: Production BOM No.
+    value: test1
+    isFilterAsYouType: true
+    description: Input <value>test1</value> into <caption>Production BOM No.</caption>
+  - type: input
+    target:
+      - page: Item Card
+        runtimeRef: b54y
+      - field: Production BOM No.
+    value: test1
+    description: Input <value>test1</value> into <caption>Production BOM No.</caption>
+  - type: page-closed
+    source:
+      page: lookup:Production BOM No.
+    runtimeId: b5lk
+    description: Page <caption>Select</caption> was closed.
+  - type: input
+    target:
+      - page: Item Card
+        runtimeRef: b54y
+      - field: Replenishment System
+    value: 2
+    description: Input <value>2</value> into <caption>Replenishment System</caption>
+  - type: input
+    target:
+      - page: Item Card
+        runtimeRef: b54y
+      - field: Replenishment System
+    value: 1
+    description: Input <value>1</value> into <caption>Replenishment System</caption>
+  - type: input
+    target:
+      - page: Item Card
+        runtimeRef: b54y
+      - field: Reorder Point
+    value: "10"
+    description: Input <value>10</value> into <caption>Reorder Point</caption>
+  - type: focus
+    target:
+      - page: Item Card
+        runtimeRef: b54y
+      - field: Maximum Inventory
+    description: Focus <caption>Maximum Inventory</caption>
+  - type: input
+    target:
+      - page: Item Card
+        runtimeRef: b54y
+      - field: Reordering Policy
+    value: 3
+    description: Input <value>3</value> into <caption>Reordering Policy</caption>
+  - type: close-page
+    target:
+      - page: lookup:Routing No.
+        runtimeRef: b5kz
+    description: Close page <caption>Select</caption>
+  - type: close-page
+    target:
+      - page: lookup:Production BOM No.
+        runtimeRef: b5lk
+    description: Close page <caption>Select</caption>
+  - type: invoke
+    target:
+      - page: Item Card
+        runtimeRef: b54y
+      - field: Warehouse Class Code
+    invokeType: Lookup
+    description: Invoke Lookup on <caption>Warehouse Class Code</caption>
+  - type: page-shown
+    source:
+      page: lookup:Warehouse Class Code
+    modal: false
+    runtimeId: b5m5
+    description: Page <caption>Select</caption> was shown.
+  - type: set-current-row
+    target:
+      - page: lookup:Warehouse Class Code
+        runtimeRef: b5m5
+      - repeater: repeater
+    targetRecord:
+      relative: -8
+    description: Set current row in <caption>repeater</caption>
+  - type: invoke
+    target:
+      - page: lookup:Warehouse Class Code
+        runtimeRef: b5m5
+      - repeater: repeater
+    parameters:
+      AlwaysCommit: true
+    description: Invoke row on <caption>repeater</caption>
+  - type: page-closed
+    source:
+      page: lookup:Warehouse Class Code
+    runtimeId: b5m5
+    description: Page <caption>Select</caption> was closed.

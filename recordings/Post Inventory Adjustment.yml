@@ -1,0 +1,307 @@
+name: Post Inventory Adjustment
+description: Test recording
+telemetryId: 35ecf48e-59de-4cd3-8376-6a3552d21925
+start:
+  profile: BUSINESS MANAGER
+steps:
+  - type: navigate
+    target:
+      - page: Business Manager Role Center
+      - action: Phys. Inventory Journal39670
+    description: Navigate to <caption>Physical Inventory Journals</caption>
+  - type: page-shown
+    source:
+      page: Phys. Inventory Journal
+    modal: false
+    runtimeId: b2tm
+    description: Page <caption>Physical Inventory Journals</caption> was shown.
+  - type: focus
+    target:
+      - page: Phys. Inventory Journal
+        runtimeRef: b2tm
+      - repeater: Control1
+      - field: Posting Date
+    description: Focus <caption>Posting Date</caption>
+  - type: focus
+    target:
+      - page: Phys. Inventory Journal
+        runtimeRef: b2tm
+      - field: null
+        automationId: fb8cccf3-54ac-4d77-9ad8-136cec25583a
+        caption: null
+    description: Focus <caption>null</caption>
+  - type: focus
+    target:
+      - page: Phys. Inventory Journal
+        runtimeRef: b2tm
+      - field: null
+        automationId: fb8cccf3-54ac-4d77-9ad8-136cec25583a
+        caption: null
+    description: Focus <caption>null</caption>
+  - type: invoke
+    target:
+      - page: Phys. Inventory Journal
+        runtimeRef: b2tm
+      - action: CalculateInventory
+    parameters: {}
+    description: Invoke <caption>Calculate Inventory...</caption>
+  - type: page-shown
+    source:
+      page: Calculate Inventory
+    modal: true
+    runtimeId: b305
+    description: Page <caption>Calculate Inventory</caption> was shown.
+  - type: input
+    target:
+      - page: Calculate Inventory
+        runtimeRef: b305
+      - part: null
+      - page: null
+      - scope: filter
+        field: No.
+    value: cas
+    isFilterAsYouType: true
+    description: Input <value>cas</value> into <caption>No.</caption>
+  - type: page-shown
+    source:
+      page: lookup:No.
+    modal: false
+    runtimeId: b311
+    description: Page <caption>Select</caption> was shown.
+  - type: input
+    target:
+      - page: Calculate Inventory
+        runtimeRef: b305
+      - part: null
+      - page: null
+      - scope: filter
+        field: No.
+    value: c
+    isFilterAsYouType: true
+    description: Input <value>c</value> into <caption>No.</caption>
+  - type: input
+    target:
+      - page: Calculate Inventory
+        runtimeRef: b305
+      - part: null
+      - page: null
+      - scope: filter
+        field: No.
+    value: ""
+    isFilterAsYouType: true
+    description: Input <value></value> into <caption>No.</caption>
+  - type: input
+    target:
+      - page: Calculate Inventory
+        runtimeRef: b305
+      - part: null
+      - page: null
+      - scope: filter
+        field: No.
+    value: pl
+    isFilterAsYouType: true
+    description: Input <value>pl</value> into <caption>No.</caption>
+  - type: input
+    target:
+      - page: Calculate Inventory
+        runtimeRef: b305
+      - part: null
+      - page: null
+      - scope: filter
+        field: No.
+    value: ply
+    isFilterAsYouType: true
+    description: Input <value>ply</value> into <caption>No.</caption>
+  - type: input
+    target:
+      - page: Calculate Inventory
+        runtimeRef: b305
+      - part: null
+      - page: null
+      - scope: filter
+        field: No.
+    value: plyrb
+    isFilterAsYouType: true
+    description: Input <value>plyrb</value> into <caption>No.</caption>
+  - type: set-current-row
+    target:
+      - page: lookup:No.
+        runtimeRef: b311
+      - repeater: repeater
+    targetRecord:
+      relative: 2
+    description: Set current row in <caption>repeater</caption>
+  - type: invoke
+    target:
+      - page: lookup:No.
+        runtimeRef: b311
+      - repeater: repeater
+    parameters:
+      AlwaysCommit: true
+    description: Invoke row on <caption>repeater</caption>
+  - type: page-closed
+    source:
+      page: lookup:No.
+    runtimeId: b311
+    description: Page <caption>Select</caption> was closed.
+  - type: input
+    target:
+      - page: Calculate Inventory
+        runtimeRef: b305
+      - part: null
+      - page: null
+      - scope: filter
+        field: null
+    value: ""
+    isFilterAsYouType: true
+    description: Input <value></value> into <caption>Location Filter</caption>
+  - type: page-shown
+    source:
+      page: "lookup:"
+    modal: false
+    runtimeId: b31u
+    description: Page <caption>Select</caption> was shown.
+  - type: input
+    target:
+      - page: Calculate Inventory
+        runtimeRef: b305
+      - part: null
+      - page: null
+      - scope: filter
+        field: null
+    value: bl
+    isFilterAsYouType: true
+    description: Input <value>bl</value> into <caption>Location Filter</caption>
+  - type: set-current-row
+    target:
+      - page: "lookup:"
+        runtimeRef: b31u
+      - repeater: repeater
+    targetRecord:
+      relative: 1
+    description: Set current row in <caption>repeater</caption>
+  - type: invoke
+    target:
+      - page: "lookup:"
+        runtimeRef: b31u
+      - repeater: repeater
+    parameters:
+      AlwaysCommit: true
+    description: Invoke row on <caption>repeater</caption>
+  - type: page-closed
+    source:
+      page: "lookup:"
+    runtimeId: b31u
+    description: Page <caption>Select</caption> was closed.
+  - type: input
+    target:
+      - page: Calculate Inventory
+        runtimeRef: b305
+      - field: PostingDate
+    value: t
+    description: Input <value>t</value> into <caption>Posting Date</caption>
+  - type: focus
+    target:
+      - page: Calculate Inventory
+        runtimeRef: b305
+      - field: DocumentNo
+    description: Focus <caption>Document No.</caption>
+  - type: invoke
+    target:
+      - page: Calculate Inventory
+        runtimeRef: b305
+    invokeType: Ok
+    description: Invoke Ok on <caption>Calculate Inventory</caption>
+  - type: page-closed
+    source:
+      page: Calculate Inventory
+    runtimeId: b305
+    description: Page <caption>Calculate Inventory</caption> was closed.
+  - type: focus
+    target:
+      - page: Phys. Inventory Journal
+        runtimeRef: b2tm
+      - field: null
+        automationId: fb8cccf3-54ac-4d77-9ad8-136cec25583a
+        caption: null
+    description: Focus <caption>null</caption>
+  - type: set-current-row
+    target:
+      - page: Phys. Inventory Journal
+        runtimeRef: b2tm
+      - repeater: Control1
+    targetRecord:
+      relative: -1
+    description: Set current row in <caption>Control1</caption>
+  - type: focus
+    target:
+      - page: Phys. Inventory Journal
+        runtimeRef: b2tm
+      - repeater: Control1
+      - field: Qty. (Phys. Inventory)
+    description: Focus <caption>Qty. (Phys. Inventory)</caption>
+  - type: input
+    target:
+      - page: Phys. Inventory Journal
+        runtimeRef: b2tm
+      - repeater: Control1
+      - field: Qty. (Phys. Inventory)
+    value: "800"
+    description: Input <value>800</value> into <caption>Qty. (Phys. Inventory)</caption>
+  - type: focus
+    target:
+      - page: Phys. Inventory Journal
+        runtimeRef: b2tm
+      - repeater: Control1
+      - field: Unit Amount
+    description: Focus <caption>Unit Amount</caption>
+  - type: invoke
+    target:
+      - page: Phys. Inventory Journal
+        runtimeRef: b2tm
+      - action: P&ost
+    parameters: {}
+    description: Invoke <caption>Post</caption>
+  - type: page-shown
+    source:
+      page: null
+      automationId: 8da61efd-0002-0003-0507-0b0d1113171d
+      caption: Confirm
+    modal: true
+    runtimeId: b32b
+    description: Page <caption>Confirm</caption> was shown.
+  - type: invoke
+    target:
+      - page: null
+        automationId: 8da61efd-0002-0003-0507-0b0d1113171d
+        caption: Confirm
+        runtimeRef: b32b
+    invokeType: Yes
+    description: Invoke Yes on <caption>Confirm</caption>
+  - type: page-closed
+    source:
+      page: null
+    runtimeId: b32b
+    description: Page <caption>Confirm</caption> was closed.
+  - type: message
+    automationId: 8da61efd-0002-0003-0507-0b0d1113171d
+    text: The journal lines were successfully posted.
+    description: "Message: <value>The journal lines were successfully posted.</value>"
+  - type: focus
+    target:
+      - page: Phys. Inventory Journal
+        runtimeRef: b2tm
+      - field: null
+        automationId: fb8cccf3-54ac-4d77-9ad8-136cec25583a
+        caption: null
+    description: Focus <caption>null</caption>
+  - type: close-page
+    target:
+      - page: Phys. Inventory Journal
+        runtimeRef: b2tm
+    description: Close page <caption>Physical Inventory Journals</caption>
+  - type: page-closed
+    source:
+      page: Phys. Inventory Journal
+    runtimeId: b2tm
+    description: Page <caption>Physical Inventory Journals</caption> was closed.
