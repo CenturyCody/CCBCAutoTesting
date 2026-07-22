@@ -45,6 +45,7 @@ npx playwright show-report ./results/playwright-report
 ```powershell
 npm install
 npx playwright install --with-deps chromium
+New-Item -ItemType Directory -Force -Path ./results | Out-Null
 npx replay "./recordings/*.yml" -StartAddress "https://<your-bc-url>" -Authentication UserPassword -UserNameKey BC_USERNAME -PasswordKey BC_PASSWORD -Headed -ResultDir ./results
 ```
 
