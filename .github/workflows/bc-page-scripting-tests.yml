@@ -1,0 +1,103 @@
+name: BC Page Scripting Tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      start_address:
+        description: "BC web client URL to test (overrides the BC_START_ADDRESS repo variable)"
+        required: false
+        type: string
+  pull_request:
+    branches: [main]
+    paths:
+      - "recordings/**"
+      - ".github/workflows/bc-page-scripting-tests.yml"
+      - "package.json"
+      - "package-lock.json"
+  push:
+    branches: [main]
+    paths:
+      - "recordings/**"
+  # schedule:
+  #   - cron: "0 6 * * 1-5"   # nightly regression, 06:00 UTC Mon-Fri
+
+concurrency:
+  group: bc-replay-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  page-scripting:
+    runs-on: ubuntu-latest   # for on-prem BC, use a self-hosted label instead
+    timeout-minutes: 30
+
+    env:
+      BC_USERNAME: ${{ secrets.BC_USERNAME }}
+      BC_PASSWORD: ${{ secrets.BC_PASSWORD }}
+      START_ADDRESS: ${{ github.event.inputs.start_address || vars.BC_START_ADDRESS }}
+      BC_AUTHENTICATION: ${{ vars.BC_AUTHENTICATION || 'UserPassword' }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate configuration
+        shell: bash
+        run: |
+          if [ -z "${START_ADDRESS}" ]; then
+            echo "::error::No BC URL set. Add a repo variable BC_START_ADDRESS or pass start_address on manual run."
+            exit 1
+          fi
+          if [ -z "${BC_USERNAME}" ] || [ -z "${BC_PASSWORD}" ]; then
+            echo "::error::Missing BC_USERNAME / BC_PASSWORD secrets."
+            exit 1
+          fi
+          count=$(find recordings -name '*.yml' 2>/dev/null | wc -l)
+          if [ "${count}" -eq 0 ]; then
+            echo "::error::No .yml recordings found in ./recordings. Add at least one saved page script."
+            exit 1
+          fi
+          echo "Found ${count} recording(s). Target: ${START_ADDRESS} (auth: ${BC_AUTHENTICATION})"
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browser (Chromium) + OS deps
+        run: npx playwright install --with-deps chromium
+
+      - name: Run page scripts (bc-replay)
+        shell: pwsh
+        run: |
+          npx replay ./recordings/*.yml `
+            -StartAddress $env:START_ADDRESS `
+            -Authentication $env:BC_AUTHENTICATION `
+            -UserNameKey BC_USERNAME `
+            -PasswordKey BC_PASSWORD `
+            -ResultDir ./results
+
+      - name: Upload test results (report, video, traces)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bc-replay-results
+          path: results/
+          retention-days: 14
+
+      - name: Summary
+        if: always()
+        shell: bash
+        run: |
+          echo "### BC Page Scripting Results" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "Download the **bc-replay-results** artifact and open it with:" >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          echo "npx playwright show-report ./results/playwright-report" >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"

@@ -1,0 +1,12 @@
+{
+  "name": "bc-page-scripting-tests",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Automated Business Central acceptance tests using the page scripting tool and @microsoft/bc-replay.",
+  "scripts": {
+    "report": "playwright show-report ./results/playwright-report"
+  },
+  "dependencies": {
+    "@microsoft/bc-replay": "^0.1.139"
+  }
+}
