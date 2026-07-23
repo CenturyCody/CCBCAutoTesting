@@ -152,7 +152,6 @@ steps:
       - scope: filter
         field: null
     value: ""
-    isFilterAsYouType: true
     description: Input <value></value> into <caption>Location Filter</caption>
   - type: page-shown
     source:
@@ -169,7 +168,6 @@ steps:
       - scope: filter
         field: null
     value: bl
-    isFilterAsYouType: true
     description: Input <value>bl</value> into <caption>Location Filter</caption>
   - type: set-current-row
     target:

@@ -6,8 +6,16 @@ start:
 steps:
   - type: navigate
     target:
-      - page: Production BOM List
-    description: Navigate to Production BOM List
+      - page: Routing List
+    description: Navigate to Routing List
+  - type: include
+    name: Create New Routing
+    file: ./includes/Create New Routing.yml
+    description: Run <file>Create New Routing</file>
+  - type: navigate
+    target:
+      - page: Production BOMs
+    description: Navigate to Production BOMs
   - type: page-closed
     source:
       page: Routing List

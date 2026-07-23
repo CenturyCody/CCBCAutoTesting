@@ -150,9 +150,8 @@ steps:
     description: Page <caption>Released Production Order</caption> was closed.
   - type: navigate
     target:
-      - page: Business Manager Role Center
-      - action: Subcontracting Worksheet25188
-    description: Navigate to <caption>Subcontracting Worksheets</caption>
+      - page: Subcontracting Worksheet
+    description: Navigate to Subcontracting Worksheet
   - type: page-shown
     source:
       page: Subcontracting Worksheet
@@ -258,9 +257,8 @@ steps:
     description: Page <caption>Subcontracting Worksheets</caption> was closed.
   - type: navigate
     target:
-      - page: Business Manager Role Center
-      - action: Purchase Order List90575
-    description: Navigate to <caption>Purchase Orders</caption>
+      - page: Purchase Order List
+    description: Navigate to Purchase Order List
   - type: page-closed
     source:
       page: Business Manager Role Center

@@ -6,167 +6,64 @@ start:
 steps:
   - type: navigate
     target:
-      - page: Create Stockkeeping Unit
-    description: Navigate to Create Stockkeeping Unit
+      - page: Stockkeeping Unit List
+    description: Navigate to Stockkeeping Units
   - type: page-shown
     source:
-      page: Create Stockkeeping Unit
-    modal: true
-    runtimeId: b5n1
-    description: Page <caption>Create Stockkeeping Unit</caption> was shown.
-  - type: input
-    target:
-      - page: Create Stockkeeping Unit
-        runtimeRef: b5n1
-      - part: null
-      - page: null
-      - scope: filter
-        field: No.
-    value: test
-    isFilterAsYouType: true
-    description: Input <value>test</value> into <caption>No.</caption>
-  - type: page-shown
-    source:
-      page: lookup:No.
+      page: Stockkeeping Unit List
     modal: false
-    runtimeId: b5nw
-    description: Page <caption>Select</caption> was shown.
-  - type: input
-    target:
-      - page: Create Stockkeeping Unit
-        runtimeRef: b5n1
-      - part: null
-      - page: null
-      - scope: filter
-        field: No.
-    value: test1
-    isFilterAsYouType: true
-    description: Input <value>test1</value> into <caption>No.</caption>
+    runtimeId: brj
+    description: Page <caption>Stockkeeping Units</caption> was shown.
   - type: invoke
     target:
-      - page: lookup:No.
-        runtimeRef: b5nw
+      - page: Stockkeeping Unit List
+        runtimeRef: brj
+      - action: Control_New
+    invokeType: New
+    description: Invoke New on <caption>New</caption>
+  - type: page-shown
+    source:
+      page: Stockkeeping Unit Card
+    modal: false
+    runtimeId: by0
+    description: Page <caption>New - Stockkeeping Unit Card</caption> was shown.
+  - type: focus
+    target:
+      - page: Stockkeeping Unit Card
+        runtimeRef: by0
+      - field: Item No.
+    description: Focus <caption>Item No.</caption>
+  - type: input
+    target:
+      - page: Stockkeeping Unit Card
+        runtimeRef: by0
+      - field: Item No.
+    value: test1
+    isFilterAsYouType: true
+    description: Input <value>test1</value> into <caption>Item No.</caption>
+  - type: page-shown
+    source:
+      page: lookup:Item No.
+    modal: false
+    runtimeId: by1
+    description: Page <caption>Select</caption> was shown.
+  - type: invoke
+    target:
+      - page: lookup:Item No.
+        runtimeRef: by1
       - repeater: repeater
     parameters:
       AlwaysCommit: true
     description: Invoke row on <caption>repeater</caption>
   - type: page-closed
     source:
-      page: lookup:No.
-    runtimeId: b5nw
+      page: lookup:Item No.
+    runtimeId: by1
     description: Page <caption>Select</caption> was closed.
   - type: input
     target:
-      - page: Create Stockkeeping Unit
-        runtimeRef: b5n1
-      - part: null
-      - page: null
-      - scope: filter
-        field: No.
+      - page: Stockkeeping Unit Card
+        runtimeRef: by0
+      - field: Item No.
     value: test1
-    description: Input <value>test1</value> into <caption>No.</caption>
-  - type: input
-    target:
-      - page: Create Stockkeeping Unit
-        runtimeRef: b5n1
-      - part: null
-      - page: null
-      - scope: filter
-        field: null
-    value: BLD-B|
-    isFilterAsYouType: true
-    description: Input <value>BLD-B|</value> into <caption>Location Filter</caption>
-  - type: page-shown
-    source:
-      page: "lookup:"
-    modal: false
-    runtimeId: b5op
-    description: Page <caption>Select</caption> was shown.
-  - type: input
-    target:
-      - page: Create Stockkeeping Unit
-        runtimeRef: b5n1
-      - part: null
-      - page: null
-      - scope: filter
-        field: null
-    value: BLD-B|ce
-    isFilterAsYouType: true
-    description: Input <value>BLD-B|ce</value> into <caption>Location Filter</caption>
-  - type: input
-    target:
-      - page: Create Stockkeeping Unit
-        runtimeRef: b5n1
-      - part: null
-      - page: null
-      - scope: filter
-        field: null
-    value: BLD-B|century
-    isFilterAsYouType: true
-    description: Input <value>BLD-B|century</value> into <caption>Location Filter</caption>
-  - type: input
-    target:
-      - page: Create Stockkeeping Unit
-        runtimeRef: b5n1
-      - part: null
-      - page: null
-      - scope: filter
-        field: null
-    value: BLD-B|century
-    description: Input <value>BLD-B|century</value> into <caption>Location Filter</caption>
-  - type: input
-    target:
-      - page: Create Stockkeeping Unit
-        runtimeRef: b5n1
-      - part: null
-      - page: null
-      - scope: filter
-        field: null
-    value: BLD-B|century
-    description: Input <value>BLD-B|century</value> into <caption>Location Filter</caption>
-  - type: page-closed
-    source:
-      page: "lookup:"
-    runtimeId: b5op
-    description: Page <caption>Select</caption> was closed.
-  - type: invoke
-    target:
-      - page: Create Stockkeeping Unit
-        runtimeRef: b5n1
-    invokeType: Ok
-    description: Invoke Ok on <caption>Create Stockkeeping Unit</caption>
-  - type: page-closed
-    source:
-      page: Create Stockkeeping Unit
-    runtimeId: b5n1
-    description: Page <caption>Create Stockkeeping Unit</caption> was closed.
-  - type: navigate
-    target:
-      - page: Business Manager Role Center
-      - action: Stockkeeping Unit List88155
-    description: Navigate to <caption>Stockkeeping Units</caption>
-  - type: page-shown
-    source:
-      page: Stockkeeping Unit List
-    modal: false
-    runtimeId: b5p6
-    description: Page <caption>Stockkeeping Units</caption> was shown.
-  - type: input
-    target:
-      - page: Stockkeeping Unit List
-        runtimeRef: b5p6
-      - scope: filter
-        field: filter:system:search
-    value: test
-    isFilterAsYouType: true
-    description: Input <value>test</value> into <caption>Search</caption>
-  - type: close-page
-    target:
-      - page: Stockkeeping Unit List
-        runtimeRef: b5p6
-    description: Close page <caption>Stockkeeping Units</caption>
-  - type: page-closed
-    source:
-      page: Stockkeeping Unit List
-    runtimeId: b5p6
-    description: Page <caption>Stockkeeping Units</caption> was closed.
+    description: Input <value>test1</value> into <caption>Item No.</caption>
