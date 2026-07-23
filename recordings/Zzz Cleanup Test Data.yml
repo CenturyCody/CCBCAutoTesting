@@ -1,0 +1,151 @@
+name: Zzz Cleanup Test Data
+description: Deletes test records left behind by other recordings (the TEST1 item
+  and its Stockkeeping Unit). Named to sort last alphabetically so it runs after
+  every other recording in the suite -- recordings that depend on TEST1 persisting
+  (e.g. Create New Stockkeeping Unit) still find it during the same run.
+telemetryId: be888760-5802-461b-803c-65548da85c26
+start:
+  profile: BUSINESS MANAGER
+steps:
+  - type: navigate
+    target:
+      - page: Stockkeeping Unit List
+    description: Navigate to Stockkeeping Units
+  - type: page-shown
+    source:
+      page: Stockkeeping Unit List
+    modal: false
+    runtimeId: bz01
+    description: Page <caption>Stockkeeping Units</caption> was shown.
+  - type: input
+    target:
+      - page: Stockkeeping Unit List
+        runtimeRef: bz01
+      - scope: filter
+        field: filter:system:search
+    value: test1
+    isFilterAsYouType: true
+    description: Input <value>test1</value> into <caption>Search</caption>
+  - type: set-current-row
+    target:
+      - page: Stockkeeping Unit List
+        runtimeRef: bz01
+      - repeater: Control1
+    targetRecord:
+      relative: 1
+    description: Set current row in <caption>Control1</caption>
+  - type: invoke
+    target:
+      - page: Stockkeeping Unit List
+        runtimeRef: bz01
+      - action: Control_Delete
+    invokeType: Delete
+    description: Invoke Delete on <caption>Delete</caption>
+  - type: page-shown
+    source:
+      page: Stockkeeping Unit Card
+    modal: false
+    runtimeId: bz02
+    description: Page <caption>Stockkeeping Unit Card</caption> was shown.
+  - type: page-shown
+    source:
+      page: null
+      automationId: 00000000-0000-0000-0400-0000836bd2d2
+      caption: Confirm
+    modal: true
+    runtimeId: bz03
+    description: Page <caption>Confirm</caption> was shown.
+  - type: invoke
+    target:
+      - page: null
+        automationId: 00000000-0000-0000-0400-0000836bd2d2
+        caption: Confirm
+        runtimeRef: bz03
+    invokeType: Yes
+    description: Invoke Yes on <caption>Confirm</caption>
+  - type: page-closed
+    source:
+      page: null
+    runtimeId: bz03
+    description: Page <caption>Confirm</caption> was closed.
+  - type: page-closed
+    source:
+      page: Stockkeeping Unit Card
+    runtimeId: bz02
+    description: Page <caption>Stockkeeping Unit Card</caption> was closed.
+  - type: page-closed
+    source:
+      page: Stockkeeping Unit List
+    runtimeId: bz01
+    description: Page <caption>Stockkeeping Units</caption> was closed.
+  - type: navigate
+    target:
+      - page: Item List
+    description: Navigate to Item List
+  - type: page-shown
+    source:
+      page: Item List
+    modal: false
+    runtimeId: bz04
+    description: Page <caption>Items</caption> was shown.
+  - type: input
+    target:
+      - page: Item List
+        runtimeRef: bz04
+      - scope: filter
+        field: filter:system:search
+    value: TEST1
+    isFilterAsYouType: true
+    description: Input <value>TEST1</value> into <caption>Search</caption>
+  - type: set-current-row
+    target:
+      - page: Item List
+        runtimeRef: bz04
+      - repeater: Control1
+    targetRecord:
+      relative: 1
+    description: Set current row in <caption>Item</caption>
+  - type: invoke
+    target:
+      - page: Item List
+        runtimeRef: bz04
+      - action: Control_Delete
+    invokeType: Delete
+    description: Invoke Delete on <caption>Delete</caption>
+  - type: page-shown
+    source:
+      page: Item Card
+    modal: false
+    runtimeId: bz05
+    description: Page <caption>Item Card</caption> was shown.
+  - type: page-shown
+    source:
+      page: null
+      automationId: 00000000-0000-0000-0400-0000836bd2d2
+      caption: Confirm
+    modal: true
+    runtimeId: bz06
+    description: Page <caption>Confirm</caption> was shown.
+  - type: invoke
+    target:
+      - page: null
+        automationId: 00000000-0000-0000-0400-0000836bd2d2
+        caption: Confirm
+        runtimeRef: bz06
+    invokeType: Yes
+    description: Invoke Yes on <caption>Confirm</caption>
+  - type: page-closed
+    source:
+      page: null
+    runtimeId: bz06
+    description: Page <caption>Confirm</caption> was closed.
+  - type: page-closed
+    source:
+      page: Item Card
+    runtimeId: bz05
+    description: Page <caption>Item Card</caption> was closed.
+  - type: page-closed
+    source:
+      page: Item List
+    runtimeId: bz04
+    description: Page <caption>Items</caption> was closed.
