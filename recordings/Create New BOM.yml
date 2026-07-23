@@ -12,10 +12,13 @@ steps:
     name: Create New Routing
     file: ./includes/Create New Routing.yml
     description: Run <file>Create New Routing</file>
+  - type: wait
+    description: Wait for 1500 milliseconds
+    time: 1500
   - type: navigate
     target:
-      - page: Production BOMs
-    description: Navigate to Production BOMs
+      - page: Production BOM List
+    description: Navigate to Production BOM List
   - type: page-closed
     source:
       page: Routing List
