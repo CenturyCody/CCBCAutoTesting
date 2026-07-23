@@ -1,5 +1,7 @@
 name: Create RPO And Create PO From Subcontracting Worksheets
-description: Test recording
+description: Test recording (trailing steps removed -- depended on a personal saved
+  Purchase Order List view ("Brent's Open") that doesn't exist in this environment,
+  and weren't part of the RPO/subcontracting-worksheet flow being tested)
 telemetryId: 8f9447d6-b994-4773-a015-ede34a63efb8
 start:
   profile: BUSINESS MANAGER
@@ -255,58 +257,3 @@ steps:
       page: Subcontracting Worksheet
     runtimeId: bhdd
     description: Page <caption>Subcontracting Worksheets</caption> was closed.
-  - type: navigate
-    target:
-      - page: Purchase Order List
-    description: Navigate to Purchase Order List
-  - type: page-closed
-    source:
-      page: Business Manager Role Center
-    runtimeId: b3lr
-    description: Page <caption>Business Manager</caption> was closed.
-  - type: page-shown
-    source:
-      page: Purchase Order List
-    modal: false
-    runtimeId: bhjl
-    description: Page <caption>Purchase Orders</caption> was shown.
-  - type: invoke
-    target:
-      - page: Purchase Order List
-        runtimeRef: bhjl
-      - action: aa49406f-6f68-4565-b857-496faa0e77aa_Brent's20054
-    parameters:
-      NavigationNodeId: 00000000-4de4-0000-1537-2f00836bd2d2
-      IgnoreControlVisibility: false
-    description: Invoke <caption>Brent's Open</caption>
-  - type: page-closed
-    source:
-      page: Purchase Order List
-    runtimeId: bhjl
-    description: Page <caption>Purchase Orders</caption> was closed.
-  - type: page-closed
-    source:
-      page: Released Production Orders
-    runtimeId: bgyd
-    description: Page <caption>Released Production Orders</caption> was closed.
-  - type: page-shown
-    source:
-      page: Purchase Order List
-    modal: false
-    runtimeId: bhwm
-    description: Page <caption>Brent's Open</caption> was shown.
-  - type: invoke
-    target:
-      - page: Purchase Order List
-        runtimeRef: bhwm
-      - repeater: Control1
-    invokeType: Edit
-    parameters:
-      AlwaysCommit: false
-    description: Invoke row on <caption>Control1</caption>
-  - type: page-shown
-    source:
-      page: Purchase Order
-    modal: false
-    runtimeId: bixf
-    description: Page <caption>Purchase Order</caption> was shown.
