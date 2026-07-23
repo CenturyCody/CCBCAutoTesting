@@ -1,5 +1,6 @@
 name: Create New Item
-description: Test recording
+description: Test recording (cleanup steps added at the end -- deletes the TEST1 item
+  so a subsequent run doesn't collide with "item already exists")
 telemetryId: 197e38bf-40fc-46c1-b743-610dfc7802d4
 start:
   profile: BUSINESS MANAGER
@@ -342,3 +343,73 @@ steps:
       page: lookup:Warehouse Class Code
     runtimeId: b5m5
     description: Page <caption>Select</caption> was closed.
+  - type: close-page
+    target:
+      - page: Item Card
+        runtimeRef: b54y
+    description: Close page <caption>Item Card</caption>
+  - type: page-closed
+    source:
+      page: Item Card
+    runtimeId: b54y
+    description: Page <caption>Item Card</caption> was closed.
+  - type: navigate
+    target:
+      - page: Item List
+    description: Navigate to Item List
+  - type: page-shown
+    source:
+      page: Item List
+    modal: false
+    runtimeId: b6a1
+    description: Page <caption>Items</caption> was shown.
+  - type: input
+    target:
+      - page: Item List
+        runtimeRef: b6a1
+      - scope: filter
+        field: filter:system:search
+    value: TEST1
+    isFilterAsYouType: true
+    description: Input <value>TEST1</value> into <caption>Search</caption>
+  - type: set-current-row
+    target:
+      - page: Item List
+        runtimeRef: b6a1
+      - repeater: Control1
+    targetRecord:
+      relative: 1
+    description: Set current row in <caption>Item</caption>
+  - type: invoke
+    target:
+      - page: Item List
+        runtimeRef: b6a1
+      - repeater: Control1
+    invokeType: Delete
+    description: Invoke Delete on <caption>Item</caption>
+  - type: page-shown
+    source:
+      page: null
+      automationId: 8da61efd-0002-0003-0507-0b0d1113171d
+      caption: Confirm
+    modal: true
+    runtimeId: b6a2
+    description: Page <caption>Confirm</caption> was shown.
+  - type: invoke
+    target:
+      - page: null
+        automationId: 8da61efd-0002-0003-0507-0b0d1113171d
+        caption: Confirm
+        runtimeRef: b6a2
+    invokeType: Yes
+    description: Invoke Yes on <caption>Confirm</caption>
+  - type: page-closed
+    source:
+      page: null
+    runtimeId: b6a2
+    description: Page <caption>Confirm</caption> was closed.
+  - type: page-closed
+    source:
+      page: Item List
+    runtimeId: b6a1
+    description: Page <caption>Items</caption> was closed.
