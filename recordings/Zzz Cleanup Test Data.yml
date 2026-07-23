@@ -2,7 +2,8 @@ name: Zzz Cleanup Test Data
 description: Deletes test records left behind by other recordings (the TEST1 item
   and its Stockkeeping Unit). Named to sort last alphabetically so it runs after
   every other recording in the suite -- recordings that depend on TEST1 persisting
-  (e.g. Create New Stockkeeping Unit) still find it during the same run.
+  (e.g. Create New Stockkeeping Unit) still find it during the same run. Deletes
+  the Stockkeeping Unit before the Item, since the SKU references the item.
 telemetryId: be888760-5802-461b-803c-65548da85c26
 start:
   profile: BUSINESS MANAGER

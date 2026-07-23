@@ -67,3 +67,53 @@ steps:
       - field: Item No.
     value: test1
     description: Input <value>test1</value> into <caption>Item No.</caption>
+  - type: focus
+    target:
+      - page: Stockkeeping Unit Card
+        runtimeRef: by0
+      - field: Location Code
+    description: Focus <caption>Location Code</caption>
+  - type: input
+    target:
+      - page: Stockkeeping Unit Card
+        runtimeRef: by0
+      - field: Location Code
+    value: BLD-B
+    isFilterAsYouType: true
+    description: Input <value>BLD-B</value> into <caption>Location Code</caption>
+  - type: page-shown
+    source:
+      page: lookup:Location Code
+    modal: false
+    runtimeId: by2
+    description: Page <caption>Select</caption> was shown.
+  - type: invoke
+    target:
+      - page: lookup:Location Code
+        runtimeRef: by2
+      - repeater: repeater
+    parameters:
+      AlwaysCommit: true
+    description: Invoke row on <caption>repeater</caption>
+  - type: page-closed
+    source:
+      page: lookup:Location Code
+    runtimeId: by2
+    description: Page <caption>Select</caption> was closed.
+  - type: input
+    target:
+      - page: Stockkeeping Unit Card
+        runtimeRef: by0
+      - field: Location Code
+    value: BLD-B
+    description: Input <value>BLD-B</value> into <caption>Location Code</caption>
+  - type: close-page
+    target:
+      - page: Stockkeeping Unit Card
+        runtimeRef: by0
+    description: Close page <caption>Stockkeeping Unit Card</caption>
+  - type: page-closed
+    source:
+      page: Stockkeeping Unit Card
+    runtimeId: by0
+    description: Page <caption>Stockkeeping Unit Card</caption> was closed.
