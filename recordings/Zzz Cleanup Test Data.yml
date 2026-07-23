@@ -1,13 +1,150 @@
 name: Zzz Cleanup Test Data
-description: Deletes test records left behind by other recordings (the TEST1 item
-  and its Stockkeeping Unit). Named to sort last alphabetically so it runs after
-  every other recording in the suite -- recordings that depend on TEST1 persisting
-  (e.g. Create New Stockkeeping Unit) still find it during the same run. Deletes
-  the Stockkeeping Unit before the Item, since the SKU references the item.
+description: Deletes test records left behind by other recordings (the Sales Order
+  and Firm Planned Prod. Order created by Create New SO and Plan FPPO, the TEST1
+  Stockkeeping Unit, and the TEST1 item). Named to sort last alphabetically so it
+  runs after every other recording in the suite -- recordings that depend on TEST1
+  persisting (e.g. Create New Stockkeeping Unit) still find it during the same run.
+  Deletion order matters here -- the Sales Order and its Production Order go first,
+  since Item deletion is blocked while outstanding documents reference it; the
+  Stockkeeping Unit goes before the Item since it references it too.
 telemetryId: be888760-5802-461b-803c-65548da85c26
 start:
   profile: BUSINESS MANAGER
 steps:
+  - type: navigate
+    target:
+      - page: Sales Order List
+    description: Navigate to Sales Orders
+  - type: page-shown
+    source:
+      page: Sales Order List
+    modal: false
+    runtimeId: bz10
+    description: Page <caption>Sales Orders</caption> was shown.
+  - type: input
+    target:
+      - page: Sales Order List
+        runtimeRef: bz10
+      - scope: filter
+        field: filter:system:search
+    value: Scripting Test
+    isFilterAsYouType: true
+    description: Input <value>Scripting Test</value> into <caption>Search</caption>
+  - type: invoke
+    target:
+      - page: Sales Order List
+        runtimeRef: bz10
+      - action: Control_Delete
+    invokeType: Delete
+    description: Invoke Delete on <caption>Delete</caption>
+  - type: page-shown
+    source:
+      page: Sales Order
+    modal: false
+    runtimeId: bz11
+    description: Page <caption>Sales Order</caption> was shown.
+  - type: page-shown
+    source:
+      page: null
+      automationId: 00000000-0000-0000-0400-0000836bd2d2
+      caption: Confirm
+    modal: true
+    runtimeId: bz12
+    description: Page <caption>Confirm</caption> was shown.
+  - type: invoke
+    target:
+      - page: null
+        automationId: 00000000-0000-0000-0400-0000836bd2d2
+        caption: Confirm
+        runtimeRef: bz12
+    invokeType: Yes
+    description: Invoke Yes on <caption>Confirm</caption>
+  - type: page-closed
+    source:
+      page: null
+    runtimeId: bz12
+    description: Page <caption>Confirm</caption> was closed.
+  - type: page-closed
+    source:
+      page: Sales Order
+    runtimeId: bz11
+    description: Page <caption>Sales Order</caption> was closed.
+  - type: page-closed
+    source:
+      page: Sales Order List
+    runtimeId: bz10
+    description: Page <caption>Sales Orders</caption> was closed.
+  - type: navigate
+    target:
+      - page: Production Order List
+    description: Navigate to Production Order List
+  - type: page-shown
+    source:
+      page: Production Order List
+    modal: false
+    runtimeId: bz13
+    description: Page <caption>Production Order List</caption> was shown.
+  - type: input
+    target:
+      - page: Production Order List
+        runtimeRef: bz13
+      - scope: filter
+        field: filter:system:search
+    value: TEST1
+    isFilterAsYouType: true
+    description: Input <value>TEST1</value> into <caption>Search</caption>
+  - type: invoke
+    target:
+      - page: Production Order List
+        runtimeRef: bz13
+      - repeater: Control1
+    parameters:
+      AlwaysCommit: false
+    description: Invoke row on <caption>Control1</caption>
+  - type: page-shown
+    source:
+      page: Firm Planned Prod. Order
+    modal: false
+    runtimeId: bz14
+    description: Page <caption>Firm Planned Prod. Order</caption> was shown.
+  - type: invoke
+    target:
+      - page: Firm Planned Prod. Order
+        runtimeRef: bz14
+      - action: Control_Delete
+    invokeType: Delete
+    description: Invoke Delete on <caption>Delete</caption>
+  - type: page-shown
+    source:
+      page: null
+      automationId: 00000000-0000-0000-0400-0000836bd2d2
+      caption: Confirm
+    modal: true
+    runtimeId: bz15
+    description: Page <caption>Confirm</caption> was shown.
+  - type: invoke
+    target:
+      - page: null
+        automationId: 00000000-0000-0000-0400-0000836bd2d2
+        caption: Confirm
+        runtimeRef: bz15
+    invokeType: Yes
+    description: Invoke Yes on <caption>Confirm</caption>
+  - type: page-closed
+    source:
+      page: null
+    runtimeId: bz15
+    description: Page <caption>Confirm</caption> was closed.
+  - type: page-closed
+    source:
+      page: Firm Planned Prod. Order
+    runtimeId: bz14
+    description: Page <caption>Firm Planned Prod. Order</caption> was closed.
+  - type: page-closed
+    source:
+      page: Production Order List
+    runtimeId: bz13
+    description: Page <caption>Production Order List</caption> was closed.
   - type: navigate
     target:
       - page: Stockkeeping Unit List
